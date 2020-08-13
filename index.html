@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>video.js</title>
+    <link rel="icon" type="image/png" href="assets/favicons/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="assets/favicons/favicon-16x16.png" sizes="16x16" />
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" rel="stylesheet">
+
+    <link href="https://vjs.zencdn.net/7.8.4/video-js.css" rel="stylesheet" />
+    <script src="https://vjs.zencdn.net/7.8.4/video.js" defer></script>
+
+    <link href="assets/css/frappe.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+    <script src="assets/js/script.js" defer></script>
+</head>
+<body>
+    <main>
+        <article class="color-surface padding-l">
+            <h1>Headline</h1>
+            <video id="video1" 
+                class="video-js responsive-video ratio-16-9" 
+                controls 
+                preload="auto"
+                width="640" height="264" 
+                poster="assets/images/poster.jpg">
+            <source src="assets/video/Big_Buck_Bunny.mp4" type="video/mp4" />
+            <source src="assets/video/Big_Buck_Bunny.webm" type="video/webm" />
+            <p class="vjs-no-js">
+                To view this video please enable JavaScript, and consider upgrading to a
+                web browser that
+                <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+            </p>
+        </video>
+        </article>
+    </main>
+</body>
+<!--
+    HTML by Dan Høegh
+    UCN MMD 2020
+-->
+</html>

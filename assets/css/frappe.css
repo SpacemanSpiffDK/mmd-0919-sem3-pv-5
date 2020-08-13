@@ -1,0 +1,206 @@
+/* 
+	CSS by Dan Høegh
+	UCN MMD 2020
+*/
+
+* {
+	box-sizing: border-box;
+	/* NOTHING ELSE GOES IN HERE */
+	/* UNLESS YOU HAVE A REALLY GOOD REASON TO */
+}
+
+.clearfix {
+	overflow: auto;
+	/* avoid using clearfix - use flex instead of float */
+}
+
+.clearfix::after {
+	content: "";
+	clear: both;
+	display: table;
+	/* avoid using clearfix - use flex instead of float */
+}
+
+.flex {
+	display: flex;
+	align-content: space-between;
+}
+
+.flex-collapse-left {
+	align-content: unset;
+}
+
+/* reset margin for a few elements  */
+h1, h2, h3, h4, h5, h6, p {
+	margin: 0;
+}
+
+/* css framework */
+:root {
+	/* density variables */
+	--frp-density-spacer: 2vw; /* change spacer value to change density in the layout */
+	--frp-density-multiplier-m: 2;
+	--frp-density-multiplier-l: 3;
+	--frp-density-multiplier-xl: 6;
+
+	/* color variables */
+	--frp-color-primary: #c7ecee;
+	--frp-color-secondary: #95afc0;
+	--frp-color-accent: #f9ca24;
+	--frp-color-surface: #30336b;
+	--frp-color-background: #130f40;
+
+	--frp-color-on-primary: #130f40;
+	--frp-color-on-secondary: #130f40;
+	--frp-color-on-accent: #130f40;
+	--frp-color-on-surface: #c7ecee;
+	
+	/* component radius variables */
+	--frp-radius-component-root: .5vw;
+
+	/* shadow  */
+	--frp-shadow: 3px 3px 5px 0 rgba(0,0,0,.5);
+	--frp-shadow-depressed: 0 0 5px 0 rgba(0,0,0,.5);
+}
+
+@media (min-width: 641px) {
+	:root {
+		--frp-density-spacer: 10px; /* change spacer value to change density in the layout */
+		--frp-radius-component-root: 10px; /*change radius value to what fits your design */
+	}	
+}
+
+:root {
+		--frp-radius-component-s: var(--frp-radius-component-root);
+		--frp-radius-component-m: calc(var(--frp-radius-component-root) * var(--frp-density-multiplier-m));
+		--frp-radius-component-l: calc(var(--frp-radius-component-root) * var(--frp-density-multiplier-l));
+		--frp-density-s: var(--frp-density-spacer);
+		--frp-density-m: calc(var(--frp-density-spacer) * var(--frp-density-multiplier-m));
+		--frp-density-l: calc(var(--frp-density-spacer) * var(--frp-density-multiplier-l));
+		--frp-density-xl: calc(var(--frp-density-spacer) * var(--frp-density-multiplier-xl));
+}
+
+/* density classes (padding/margin) */
+
+.padding-s	{ padding: var(--frp-density-s) }
+.padding-m	{ padding: var(--frp-density-m) }
+.padding-l	{ padding: var(--frp-density-l) }
+.padding-xl	{ padding: var(--frp-density-xl) }
+
+.padding-top-s	{ padding-top: var(--frp-density-s) }
+.padding-top-m	{ padding-top: var(--frp-density-m) }
+.padding-top-l	{ padding-top: var(--frp-density-l) }
+.padding-top-xl	{ padding-top: var(--frp-density-xl) }
+
+.padding-bottom-s	{ padding-bottom: var(--frp-density-s) }
+.padding-bottom-m	{ padding-bottom: var(--frp-density-m) }
+.padding-bottom-l	{ padding-bottom: var(--frp-density-l) }
+.padding-bottom-xl	{ padding-bottom: var(--frp-density-xl) }
+
+.padding-vertical-s		{ padding-top: var(--frp-density-s); padding-bottom: var(--frp-density-s) }
+.padding-vertical-m		{ padding-top: var(--frp-density-m); padding-bottom: var(--frp-density-m) }
+.padding-vertical-l		{ padding-top: var(--frp-density-l); padding-bottom: var(--frp-density-l) }
+.padding-vertical-xl	{ padding-top: var(--frp-density-xl); padding-bottom: var(--frp-density-xl) }
+
+.padding-left-s		{ padding-left: var(--frp-density-s) }
+.padding-left-m		{ padding-left: var(--frp-density-m) }
+.padding-left-l		{ padding-left: var(--frp-density-l) }
+.padding-left-xl	{ padding-left: var(--frp-density-xl) }
+
+.padding-right-s	{ padding-right: var(--frp-density-s) }
+.padding-right-m	{ padding-right: var(--frp-density-m) }
+.padding-right-l	{ padding-right: var(--frp-density-l) }
+.padding-right-xl	{ padding-right: var(--frp-density-xl) }
+
+.padding-horizontal-s	{ padding-left: var(--frp-density-s); padding-right: var(--frp-density-s) }
+.padding-horizontal-m	{ padding-left: var(--frp-density-m); padding-right: var(--frp-density-m) }
+.padding-horizontal-l	{ padding-left: var(--frp-density-l); padding-right: var(--frp-density-l) }
+.padding-horizontal-xl	{ padding-left: var(--frp-density-xl); padding-right: var(--frp-density-xl) }
+
+.margin-s	{ margin: var(--frp-density-s) }
+.margin-m	{ margin: var(--frp-density-m) }
+.margin-l	{ margin: var(--frp-density-l) }
+.margin-xl	{ margin: var(--frp-density-xl) }
+
+.margin-top-s	{ margin-top: var(--frp-density-s) }
+.margin-top-m	{ margin-top: var(--frp-density-m) }
+.margin-top-l	{ margin-top: var(--frp-density-l) }
+.margin-top-xl	{ margin-top: var(--frp-density-xl) }
+
+.margin-bottom-s	{ margin-bottom: var(--frp-density-s) }
+.margin-bottom-m	{ margin-bottom: var(--frp-density-m) }
+.margin-bottom-l	{ margin-bottom: var(--frp-density-l) }
+.margin-bottom-xl	{ margin-bottom: var(--frp-density-xl) }
+
+.margin-vertical-s	{ margin-top: var(--frp-density-s); margin-bottom: var(--frp-density-s) }
+.margin-vertical-m	{ margin-top: var(--frp-density-m); margin-bottom: var(--frp-density-m) }
+.margin-vertical-l	{ margin-top: var(--frp-density-l); margin-bottom: var(--frp-density-l) }
+.margin-vertical-xl	{ margin-top: var(--frp-density-xl); margin-bottom: var(--frp-density-xl) }
+
+.margin-left-s	{ margin-left: var(--frp-density-s) }
+.margin-left-m	{ margin-left: var(--frp-density-m) }
+.margin-left-l	{ margin-left: var(--frp-density-l) }
+.margin-left-xl	{ margin-left: var(--frp-density-xl) }
+
+.margin-right-s		{ margin-right: var(--frp-density-s) }
+.margin-right-m		{ margin-right: var(--frp-density-m) }
+.margin-right-l		{ margin-right: var(--frp-density-l) }
+.margin-right-xl	{ margin-right: var(--frp-density-xl) }
+
+.margin-horizontal-s	{ margin-left: var(--frp-density-s); margin-right: var(--frp-density-s) }
+.margin-horizontal-m	{ margin-left: var(--frp-density-m); margin-right: var(--frp-density-m) }
+.margin-horizontal-l	{ margin-left: var(--frp-density-l); margin-right: var(--frp-density-l) }
+.margin-horizontal-xl	{ margin-left: var(--frp-density-xl); margin-right: var(--frp-density-xl) }
+
+/* corner radius classes */
+
+.border-radius-s { border-radius: var(--frp-radius-component-s) }
+.border-radius-m { border-radius: var(--frp-radius-component-m) }
+.border-radius-l { border-radius: var(--frp-radius-component-l) }
+
+/* colors */
+
+.color-primary {
+	background-color: var(--frp-color-primary);
+	color: var(--frp-color-on-primary);
+}
+
+.color-secondary {
+	background-color: var(--frp-color-secondary);
+	color: var(--frp-color-on-secondary);
+}
+
+.color-accent {
+	background-color: var(--frp-color-accent);
+	color: var(--frp-color-on-accent);
+}
+
+.color-surface {
+	background-color: var(--frp-color-surface);
+	color: var(--frp-color-on-surface);
+}
+
+.color-background {
+	background-color: var(--frp-color-background);
+}
+
+/* shadows */
+
+.shadow {
+	box-shadow: var(--frp-shadow);
+}
+
+/* size  */
+
+.viewport-width {
+	width: 100vw;
+}
+
+.viewport-height {
+	height: 100vh;
+}
+
+.viewport-full {
+	height: 100vh;
+	width: 100vw;
+}
