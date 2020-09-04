@@ -4,6 +4,10 @@
 
 */
 
+video:focus {
+    outline: none;
+}
+
 body {
 	font-family: sans-serif;
 	padding: 5vw;
