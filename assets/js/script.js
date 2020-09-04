@@ -18,6 +18,7 @@ video1.on('pause', function() { // .on(event, ...)     is an eventlistener used 
     // not worry about leaving extra nodes hanging around.
     
     var modal = video1.createModal('This is a modal!');
+    // TASK: try swapping out the text string with an HTML element (.createElement) 
     
     // You can add your own classname to the modal - in this way you can style different modals independently
     modal.addClass('vjs-dahg-fancy-modal');
