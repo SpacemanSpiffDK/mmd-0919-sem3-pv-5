@@ -18,7 +18,8 @@ video1.on('pause', function() { // .on(event, ...)     is an eventlistener used 
     // not worry about leaving extra nodes hanging around.
     
     var modal = video1.createModal('This is a modal!');
-    // TASK: try swapping out the text string with an HTML element (.createElement) 
+    // TASK: --------------------- 
+    // try swapping out the text string with an HTML element (.createElement) 
     
     // You can add your own classname to the modal - in this way you can style different modals independently
     modal.addClass('vjs-dahg-fancy-modal');
@@ -30,27 +31,33 @@ video1.on('pause', function() { // .on(event, ...)     is an eventlistener used 
 });
 
 videojs('video2', options);
-// The complex way
+// The complex (an more configurable way) way
 const video2 = videojs('video2');
 const ModalDialog = videojs.getComponent('ModalDialog');
 
-const modalContent = document.createElement("h1");
-modalContent.className = "myClassName";
-modalContent.innerHTML = "This is a test";
+// Creating an HTML element for injection into the modal
+const modalContent = document.createElement("h1");  // create an element (h1)
+modalContent.className = "myClassName";             // add a class to it
+modalContent.innerHTML = "This is a test";          // add some content to the element
 
+// Create the modal
 const modal = new ModalDialog(video2, {
-    // add the content of the modalContent variable as content
-    content: modalContent,
-    // We don't want this modal to go away when it closes.
-  temporary: false
+    // Options can be added in JSON format - CONFIGURABILITY!
+    content: modalContent,  // add the modalContent variable as content
+    temporary: false        // We don't want this modal to go away when it closes
+                            // It will be hidden and NOT deleted from HTML DOM when closed
+                            // This can be practical if you don't want the content to be forgotten
 });
 
+// Adds the modal to the video, but doesn't open it
 video2.addChild(modal);
 
+// Opens the modal on pause
 video2.on('pause', function() {
   modal.open();
 });
 
+// Closes the modal on play
 video2.on('play', function() {
   modal.close();
 });
