@@ -19,13 +19,13 @@ video1.on('pause', function() { // .on(event, ...)     is an eventlistener used 
     
     var modal = video1.createModal('This is a modal!');
     // TASK: --------------------- 
-    // try swapping out the text string with an HTML element (.createElement) 
+    // try swapping out the text string with an HTML element (using .createElement to construct it)
     
     // You can add your own classname to the modal - in this way you can style different modals independently
     modal.addClass('vjs-dahg-fancy-modal');
     
     // When the modal closes, resume playback.
-    modal.on('modalclose', function() { // .on(event, ...)     is an eventlistener used with video.js
+    modal.on('modalclose', function() { // .on(event, ...)     is an eventlistener used with video.js, first seen (by me) in jQuery
         video1.play();
   });
 });
