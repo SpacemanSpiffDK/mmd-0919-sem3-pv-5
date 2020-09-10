@@ -14,7 +14,7 @@ const options = {
 
 videojs('video1', options);
 const video1 = videojs('video1');
-video1.on('pause', function () { // .on(event, ...)     is an eventlistener used with video.js
+video1.on('pause', () => { // .on(event, ...)     is an eventlistener used with video.js
 
 	// Modals are temporary by default. They dispose themselves when they are
 	// closed; so, we can create a new one each time the player is paused and
@@ -28,7 +28,7 @@ video1.on('pause', function () { // .on(event, ...)     is an eventlistener used
 	modal.addClass('vjs-dahg-fancy-modal');
 
 	// When the modal closes, resume playback.
-	modal.on('modalclose', function () { // .on(event, ...)     is an eventlistener used with video.js, first seen (by me) in jQuery
+	modal.on('modalclose', () => { // .on(event, ...)     is an eventlistener used with video.js, first seen (by me) in jQuery
 		video1.play();
 	});
 });
@@ -62,12 +62,12 @@ const modal = new ModalDialog(video2, {
 video2.addChild(modal);
 
 // Opens the modal on pause
-video2.on('pause', function () {
+video2.on('pause', () => {
 	modal.open();
 });
 
 // Closes the modal on play
-video2.on('play', function () {
+video2.on('play', () => {
 	modal.close();
 });
 
@@ -85,7 +85,7 @@ let video2timer = setInterval(() => {
 		overlayShown = true; // set boolean flag to indicate that we have now triggered the overlay
 		clearInterval(video2timer); // stop the time check
 		let modal2 = video2.createModal(modalContent); // using modalcontent from the previous example
-		modal2.on('modalclose', function () {
+		modal2.on('modalclose', () => {
 			video2.play();
 		});
 	}
@@ -109,11 +109,11 @@ modalContent2.innerHTML = "Modal Content 2";          // add some content to the
 // These are datasets for the modals we want to show, content-HTML DOM element from above and a time stamp
 let modalsData = [
 	{
-		time: 10,
+		time: 7,
 		content: modalContent1
 	},
 	{
-		time: 5,
+		time: 3,
 		content: modalContent2
 	}
 ];
