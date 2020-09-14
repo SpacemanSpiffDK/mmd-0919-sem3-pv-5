@@ -13,17 +13,15 @@ const options = {
 // The simple way
 
 videojs('video1', options);
+
 const video1 = videojs('video1');
 video1.on('pause', () => { // .on(event, ...)     is an eventlistener used with video.js
 
-	// Modals are temporary by default. They dispose themselves when they are
-	// closed; so, we can create a new one each time the player is paused and
-	// not worry about leaving extra nodes hanging around.
+	// Modals are temporary by default. They dispose themselves when they are closed so,
+	// we can create a new one each time the player is paused and not worry about leaving extra nodes hanging around.
 
 	let modal = video1.createModal('This is a modal!');
-	// TASK: --------------------- 
-	// try swapping out the text string with an HTML element (using .createElement to construct it)
-
+	
 	// You can add your own classname to the modal - in this way you can style different modals independently
 	modal.addClass('vjs-dahg-fancy-modal');
 
@@ -41,21 +39,25 @@ video1.on('pause', () => { // .on(event, ...)     is an eventlistener used with 
 // The complex (and more configurable way) way
 
 videojs('video2', options);
-const video2 = videojs('video2');
-const ModalDialog = videojs.getComponent('ModalDialog');
 
-// Creating an HTML element for injection into the modal
+const video2 = videojs('video2');
+const modalDialog = videojs.getComponent('ModalDialog'); // use "getComponent" to create a modalDialog class 
+
+// Creating an HTML element for injection into the modal - this can be done with "the simple way" too
 const modalContent = document.createElement("h1");  // create an element (h1)
 modalContent.className = "myClassName";             // add a class to it
 modalContent.innerHTML = "This is a test";          // add some content to the element
 
 // Create the modal
-const modal = new ModalDialog(video2, {
+const modal = new modalDialog(video2, {
 	// Options can be added in JSON format - CONFIGURABILITY!
-	content: modalContent,  // add the modalContent variable as content
-	temporary: false        // We don't want this modal to go away when it closes
-	// It will be hidden and NOT deleted from HTML DOM when closed
-	// This can be practical if you don't want the content to be forgotten
+	// see the options here: https://docs.videojs.com/modaldialog
+	// PP-SLIDE: look through the options and use of that page ^^
+
+	content: modalContent,  	// add the modalContent variable as content
+	temporary: false        	// We don't want this modal to go away when it closes
+								// It will be hidden and NOT deleted from HTML DOM when closed
+								// This can be practical if you don't want the content to be forgotten
 });
 
 // Adds the modal to the video, but doesn't open it
@@ -76,15 +78,13 @@ video2.on('play', () => {
 // Show overlay based on a simple timer
 // Show overlay based on a simple timer
 
-let overlayShown = false; // boolean for checking if we already have reached a currentTime above the value we're looking for
-
 // setup an interval that checks if modal should be triggered
 let video2timer = setInterval(() => {
-	// currentTime() is a function in video.js, which refers to the video.js video object, not the HTML DOM video element
-	if (video2.currentTime() > 2 && !overlayShown) {
-		overlayShown = true; // set boolean flag to indicate that we have now triggered the overlay
-		clearInterval(video2timer); // stop the time check
-		let modal2 = video2.createModal(modalContent); // using modalcontent from the previous example
+	// .currentTime() is a method in video.js, which refers to the video.js video object, 
+	// not the HTML DOM video element, where you would get time without parentheses: document.querySelector('#video2').currentTime       <= note: no () at the end here
+	if (video2.currentTime() > 2) {
+		clearInterval(video2timer); 					// stop time-based loop
+		let modal2 = video2.createModal(modalContent); 	// using modalcontent from the previous example
 		modal2.on('modalclose', () => {
 			video2.play();
 		});
@@ -99,11 +99,11 @@ let video2timer = setInterval(() => {
 
 
 // We prepare the content for the different modals before we setup a sequence in modalsData
-const modalContent1 = document.createElement("h1");  // create an element (h1)
-modalContent1.innerHTML = "Modal Content 1";          // add some content to the element
+const modalContent1 = document.createElement("h1");  	// create an element (h1)
+modalContent1.innerHTML = "Modal Content 1";          	// add some content to the element
 
-const modalContent2 = document.createElement("h2");  // create an element (h1)
-modalContent2.innerHTML = "Modal Content 2";          // add some content to the element
+const modalContent2 = document.createElement("h2");  	// create an element (h1)
+modalContent2.innerHTML = "Modal Content 2";          	// add some content to the element
 
 
 // These are datasets for the modals we want to show, content-HTML DOM element from above and a time stamp
@@ -115,6 +115,10 @@ let modalsData = [
 	{
 		time: 3,
 		content: modalContent2
+	},
+	{
+		time: 10,
+		content: modalContent1
 	}
 ];
 
